@@ -952,6 +952,11 @@ html, body {
   color: var(--text-muted);
 }
 
+/* Barra Inferior Mobile (oculta no desktop) */
+.mobile-bottom-nav {
+  display: none;
+}
+
 /* ==========================================================================
    OTIMIZAÇÃO MOBILE (Celular / GitHub Pages)
    ========================================================================== */
@@ -972,25 +977,13 @@ html, body {
 }
 
 @media (max-width: 680px) {
-  /* Barra superior em 2 faixas limpas para fácil toque com polegar */
+  /* Barra superior reduzida a 1 linha enxuta (datas ficam na barra inferior) */
   .topbar-inner {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .date-tabs {
-    width: 100%;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .tab-btn {
-    flex: 1 1 25%;
-    padding: 0 8px;
-    text-align: center;
-    font-size: 12px;
-  }
-
-  .tab-btn:last-child {
-    border-right: none;
+    display: none;
   }
 
   .topbar-actions {
@@ -1002,18 +995,71 @@ html, body {
     flex: 1 1 auto;
     border-left: none;
     min-width: 0;
-    font-size: 12px;
-    padding: 0 10px;
+    font-size: 13px;
+    padding: 0 12px;
+    min-height: 44px;
   }
 
   .flat-btn {
-    padding: 0 14px;
-    font-size: 12px;
+    padding: 0 16px;
+    font-size: 12.5px;
+    min-height: 44px;
   }
 
-  /* Folha full-bleed no celular */
+  /* Barra Inferior Fixa Estilo App (Flat e Reta) */
+  .mobile-bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 150;
+    background: var(--sheet-bg);
+    border-top: 2px solid var(--border-dark);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .bottom-nav-btn {
+    border: none;
+    border-right: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    min-height: 56px;
+    padding: 6px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bottom-nav-btn:last-child {
+    border-right: none;
+  }
+
+  .bottom-nav-btn .bnav-day {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .bottom-nav-btn.active {
+    background: var(--surface-strong);
+    color: var(--surface-strong-text);
+  }
+
+  /* Folha full-bleed no celular com respiro para a barra inferior */
   .page-wrap {
-    padding: 0 0 28px;
+    padding: 0 0 calc(68px + env(safe-area-inset-bottom, 0px));
   }
 
   .sheet {

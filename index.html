@@ -88,6 +88,38 @@
     </div>
   </main>
 
+  <!-- Barra Inferior Fixa Estilo App (Exclusiva Mobile <= 680px) -->
+  <nav class="mobile-bottom-nav" aria-label="Navegação rápida mobile">
+    <button class="bottom-nav-btn active" type="button" data-date="all" aria-label="Ver todas as datas">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+      </svg>
+      <span>Todas</span>
+    </button>
+    <button class="bottom-nav-btn" type="button" data-date="2026-12-13" aria-label="Ver filmes de 13/12">
+      <strong class="bnav-day">13</strong>
+      <span>DEZ</span>
+    </button>
+    <button class="bottom-nav-btn" type="button" data-date="2026-12-20" aria-label="Ver filmes de 20/12">
+      <strong class="bnav-day">20</strong>
+      <span>DEZ</span>
+    </button>
+    <button class="bottom-nav-btn" type="button" data-date="2026-12-27" aria-label="Ver filmes de 27/12">
+      <strong class="bnav-day">27</strong>
+      <span>DEZ</span>
+    </button>
+    <button class="bottom-nav-btn" type="button" id="mobile-jump-chains" aria-label="Ir para redes e endereços">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"></path>
+        <circle cx="12" cy="10" r="2.5"></circle>
+      </svg>
+      <span>Redes</span>
+    </button>
+  </nav>
+
   <script src="app.js"></script>
 </body>
 </html>

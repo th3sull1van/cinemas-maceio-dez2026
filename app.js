@@ -625,20 +625,51 @@
   }
 
   /* ========================================================================
-     3. EVENTOS
+     3. EVENTOS (Desktop + Barra Inferior Mobile)
      ======================================================================== */
-  document.querySelectorAll('.tab-btn[data-date]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn[data-date]').forEach((b) => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      state.dateFilter = btn.dataset.date;
-      renderAll();
+  function setDateFilter(dateId, scrollToTop = false) {
+    state.dateFilter = dateId;
+
+    document.querySelectorAll('.tab-btn[data-date]').forEach((b) => {
+      const isActive = b.dataset.date === dateId;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', String(isActive));
     });
+
+    document.querySelectorAll('.bottom-nav-btn[data-date]').forEach((b) => {
+      b.classList.toggle('active', b.dataset.date === dateId);
+    });
+
+    const jumpChainsBtn = document.getElementById('mobile-jump-chains');
+    if (jumpChainsBtn) jumpChainsBtn.classList.remove('active');
+
+    renderAll();
+
+    if (scrollToTop) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  document.querySelectorAll('.tab-btn[data-date]').forEach((btn) => {
+    btn.addEventListener('click', () => setDateFilter(btn.dataset.date, false));
   });
+
+  document.querySelectorAll('.bottom-nav-btn[data-date]').forEach((btn) => {
+    btn.addEventListener('click', () => setDateFilter(btn.dataset.date, true));
+  });
+
+  const mobileJumpChains = document.getElementById('mobile-jump-chains');
+  if (mobileJumpChains) {
+    mobileJumpChains.addEventListener('click', () => {
+      document.querySelectorAll('.bottom-nav-btn').forEach((b) => b.classList.remove('active'));
+      mobileJumpChains.classList.add('active');
+      const chainsEl = document.getElementById('section-chains');
+      if (chainsEl) {
+        const y = chainsEl.getBoundingClientRect().top + window.scrollY - 52;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      }
+    });
+  }
 
   document.getElementById('chain-filter').addEventListener('change', (e) => {
     state.chainFilter = e.target.value;
