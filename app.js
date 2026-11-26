@@ -86,6 +86,7 @@
           duration: '1h30',
           rating: 'L',
           genre: 'Animação • Aventura',
+          rt: { critic: 88, audience: 90, status: null },
           synopsis:
             'Em um pântano distante vive Shrek, um ogro solitário que vê sua tranquilidade invadida por personagens de contos de fada expulsos pelo maligno Lorde Farquaad. Para recuperar seu lar, Shrek faz um acordo com Farquaad e parte com o amigo Burro para resgatar uma princesa prisioneira de um dragão.',
           showtimesByChain: [
@@ -124,6 +125,7 @@
           duration: '2h07',
           rating: '18',
           genre: 'Drama • Religião',
+          rt: { critic: 50, audience: 81, status: null },
           synopsis:
             'Retrata as últimas 12 horas da vida de Jesus de Nazaré (James Caviezel). Traído por Judas no Monte das Oliveiras e preso sob ordem de Caifás, Jesus é entregue ao governador romano Pôncio Pilatos, que tenta transferir a decisão a Herodes antes de ceder à pressão popular sob os olhares de sua esposa Cláudia.',
           showtimesByChain: [
@@ -161,6 +163,7 @@
           duration: '2h45',
           rating: 'SC',
           genre: 'Ação • Aventura • Ficção',
+          rt: { critic: null, audience: null, status: 'Sem nota ainda (embargo até estreia)' },
           synopsis:
             'Heróis icônicos de três universos diferentes são colocados em rota de colisão mortal e enfrentam uma ameaça existencial sem precedentes, diferente de tudo que já vivenciaram antes. Dirigido pelos Irmãos Russo, marca a chegada do vilão Doutor Destino.',
           showtimesByChain: [
@@ -246,6 +249,7 @@
           duration: '2h47',
           rating: '14',
           genre: 'Ação • Aventura • Ficção Científica',
+          rt: { critic: null, audience: null, status: 'Sem nota ainda (embargo até estreia)' },
           synopsis:
             'Adaptação do terceiro livro de Frank Herbert ("Duna: Messias"), ambientada 12 anos após a Parte 2, durante o império de Paul Atreides (Timothée Chalamet). Apaixonado por Chani (Zendaya) e casado com a Princesa Irulan (Florence Pugh), Paul enfrenta visões apocalípticas e as consequências da Guerra Santa travada em seu nome.',
           showtimesByChain: [
@@ -294,6 +298,7 @@
       title: 'Malu Tatu',
       releaseDate: 'Estreia 17/12',
       genre: 'Animação Nacional',
+      rt: { critic: null, label: 'Sem página no RT' },
       synopsis:
         'Malu, uma jovem tatu-mulita, desafia regras para salvar sua comunidade da seca e lidera um plano ousado para reconstruir a toca dos tatus.',
     },
@@ -302,6 +307,7 @@
       title: 'Filhas da Noite',
       releaseDate: 'Estreia 17/12',
       genre: 'Documentário',
+      rt: { critic: null, label: 'Sem página no RT' },
       synopsis:
         'Seis ícones das noites pernambucanas revisitam seus passados e revivem memórias íntimas como pioneiras de uma revolução cultural ainda em curso.',
     },
@@ -310,6 +316,7 @@
       title: 'Intervenção',
       releaseDate: 'Estreia 17/12',
       genre: 'Documentário',
+      rt: { critic: null, label: 'Sem página no RT' },
       synopsis:
         'Filmado ao longo de quatro anos, acompanha a luta de moradores pela urbanização de duas favelas e um conjunto habitacional na zona oeste de SP.',
     },
@@ -318,6 +325,7 @@
       title: 'One Piece: Aventura em Dobro',
       releaseDate: 'Estreia 10/12',
       genre: 'Animê • Aventura',
+      rt: { critic: null, label: 'Sem nota no RT' },
       synopsis:
         'Reúne dois episódios estendidos dos Chapéus de Palha em busca do Going Merry e Chopper na ilha dos animais estranhos, mais curta inédito.',
     },
@@ -326,6 +334,7 @@
       title: 'A Última Entrega',
       releaseDate: 'Estreia 03/12',
       genre: 'Ação • Suspense',
+      rt: { critic: null, label: 'Sem nota agregada' },
       synopsis:
         'Um horticultor silencioso com passado secreto como assassino letal vê sua identidade ameaçada ao ajudar uma testemunha de corrupção policial.',
     },
@@ -334,6 +343,7 @@
       title: 'Verão da Lata',
       releaseDate: 'Estreia 03/12',
       genre: 'Comédia Policial',
+      rt: { critic: null, label: 'Sem página no RT' },
       synopsis:
         'Inspirado no episódio de 1987 no RJ, acompanha os policiais Brasa (Babu Santana) e Sandra (Samantha Schmütz) no caos das latas que chegam às praias.',
     },
@@ -342,6 +352,7 @@
       title: 'Noite Ainda Mais Infeliz',
       releaseDate: 'Estreia 03/12',
       genre: 'Ação • Natal',
+      rt: { critic: null, label: 'Aguardando críticas' },
       synopsis:
         'Encalhado em um shopping em ruínas em Nova Jersey e isolado do Polo Norte, Papai Noel faz justiça brutal contra um senhor do crime e seus capangas.',
     },
@@ -350,6 +361,7 @@
       title: 'Psicopata Vitoriana',
       releaseDate: 'Estreia 03/12',
       genre: 'Terror • Suspense',
+      rt: { critic: 75, label: null },
       synopsis:
         'Na sombria Ensor House, a nova governanta Winifred (Maika Monroe) esconde impulsos violentos sob modos impecáveis enquanto funcionários somem.',
     },
@@ -394,6 +406,41 @@
       <div class="summary-cell"><strong>${chainsCount}</strong><span>${chainsLabel}</span></div>
       <div class="summary-cell"><strong>02/12</strong><span>limite grade regular</span></div>
     `;
+  }
+
+  function renderMovieRT(rt) {
+    if (!rt) return '';
+    if (rt.critic === null && rt.audience === null) {
+      return `
+        <div class="rt-row" aria-label="Rotten Tomatoes">
+          <span class="rt-pill is-pending">
+            <span class="rt-label">Rotten Tomatoes</span>
+            <span class="rt-val pending">${rt.status || 'Sem nota'}</span>
+          </span>
+        </div>
+      `;
+    }
+
+    const parts = [];
+    if (rt.critic !== null) {
+      const cls = rt.critic >= 60 ? 'fresh' : 'rotten';
+      parts.push(`
+        <span class="rt-pill" title="Tomatometer — Crítica no Rotten Tomatoes">
+          <span class="rt-label">RT Crítica</span>
+          <span class="rt-val ${cls}">${rt.critic}%</span>
+        </span>
+      `);
+    }
+    if (rt.audience !== null) {
+      const cls = rt.audience >= 60 ? 'popcorn' : 'rotten';
+      parts.push(`
+        <span class="rt-pill" title="Popcornmeter — Público no Rotten Tomatoes">
+          <span class="rt-label">RT Público</span>
+          <span class="rt-val ${cls}">${rt.audience}%</span>
+        </span>
+      `);
+    }
+    return `<div class="rt-row" aria-label="Notas no Rotten Tomatoes">${parts.join('')}</div>`;
   }
 
   function renderMovie(movie) {
@@ -459,6 +506,7 @@
                 <span class="fact-chip">${movie.genre}</span>
               </div>
             </div>
+            ${renderMovieRT(movie.rt)}
           </div>
           <p class="movie-synopsis">${movie.synopsis}</p>
           <div class="chains-schedule">${chainsHtml}</div>
@@ -470,6 +518,10 @@
   function renderPending27() {
     const cards = DECEMBER_RADAR.map((item) => {
       const posterSrc = `assets/posters/${item.posterKey}.webp`;
+      const rtHtml =
+        item.rt && item.rt.critic !== null
+          ? `<div class="radar-rt"><span>ROTTEN TOMATOES</span><span class="radar-rt-score ${item.rt.critic < 60 ? 'rotten' : ''}">${item.rt.critic}%</span></div>`
+          : `<div class="radar-rt"><span>RT</span><span class="radar-rt-score pending">${item.rt?.label || 'Sem nota'}</span></div>`;
       return `
         <article class="radar-item">
           <div class="radar-poster-wrap">
@@ -480,6 +532,7 @@
             <span class="radar-genre">${item.genre}</span>
             <h4>${item.title}</h4>
             <p>${item.synopsis}</p>
+            ${rtHtml}
           </div>
         </article>
       `;

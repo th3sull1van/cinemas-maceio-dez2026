@@ -482,6 +482,103 @@ html, body {
   color: var(--text-2);
 }
 
+/* Rotten Tomatoes — Blocos Flat e Retos */
+.rt-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rt-pill {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--border-dark);
+  background: var(--sheet-bg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.rt-pill.is-pending {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.rt-label {
+  padding: 5px 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+}
+
+.rt-pill.is-pending .rt-label {
+  color: var(--text-muted);
+}
+
+.rt-val {
+  padding: 5px 9px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.rt-val.fresh {
+  background: #FA320A;
+}
+
+.rt-val.rotten {
+  background: #4B8B3B;
+}
+
+.rt-val.popcorn {
+  background: #C97A00;
+}
+
+.rt-val.pending {
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.radar-rt {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.radar-rt-score {
+  padding: 2px 6px;
+  color: #FFFFFF;
+  background: #FA320A;
+}
+
+.radar-rt-score.rotten {
+  background: #4B8B3B;
+}
+
+.radar-rt-score.pending {
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+
 .movie-synopsis {
   margin: 0;
   font-size: 13.5px;
@@ -707,6 +804,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex: 1;
 }
 
 .radar-genre {
