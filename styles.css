@@ -1,0 +1,1037 @@
+/* ==========================================================================
+   Cinemas em Maceió — Design Flat, Reto & Mobile-First (Estilo Editorial Suíço)
+   Zero gradientes • Zero sombras • Cantos 100% retos • Foco total nos filmes
+   ========================================================================== */
+
+:root {
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+  /* Cores sólidas das redes */
+  --chain-cinesystem: #D92638;
+  --chain-kinoplex: #C97A00;
+  --chain-centerplex: #006EC4;
+  --chain-pajucara: #0A8A7B;
+  --chain-cinepremium: #71717A;
+
+  /* Tema Claro (Padrão Flat) */
+  --page-bg: #EFEFEA;
+  --sheet-bg: #FFFFFF;
+  --surface: #F7F7F4;
+  --surface-strong: #111111;
+  --surface-strong-text: #FFFFFF;
+  --border: #DCDCD5;
+  --border-dark: #111111;
+  --text: #111111;
+  --text-2: #3F3F46;
+  --text-muted: #686870;
+  --accent: #111111;
+  --highlight-bg: #FFF7D6;
+  --highlight-border: #C97A00;
+}
+
+body.theme-dark {
+  --page-bg: #070708;
+  --sheet-bg: #111113;
+  --surface: #18181B;
+  --surface-strong: #F4F4F0;
+  --surface-strong-text: #111111;
+  --border: #2B2B30;
+  --border-dark: #E4E4E0;
+  --text: #F4F4F0;
+  --text-2: #C2C2CA;
+  --text-muted: #8E8E98;
+  --accent: #F4F4F0;
+  --highlight-bg: #221D10;
+  --highlight-border: #E59D1A;
+
+  --chain-cinesystem: #F04858;
+  --chain-kinoplex: #F0A500;
+  --chain-centerplex: #38BDF8;
+  --chain-pajucara: #2DD4BF;
+  --chain-cinepremium: #8E8E98;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.48;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Barra Superior Fixa (Mobile-First, Toque Fácil)
+   ========================================================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--sheet-bg);
+  border-bottom: 2px solid var(--border-dark);
+}
+
+.topbar-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.date-tabs {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.date-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  border: none;
+  border-right: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0 15px;
+  min-height: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.tab-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.tab-btn.active {
+  background: var(--surface-strong);
+  color: var(--surface-strong-text);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: stretch;
+  margin-left: auto;
+}
+
+.flat-select {
+  border: none;
+  border-left: 1px solid var(--border);
+  background: var(--sheet-bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 0 12px;
+  min-height: 44px;
+  cursor: pointer;
+  outline: none;
+}
+
+.flat-select option {
+  background: var(--sheet-bg);
+  color: var(--text);
+}
+
+.flat-btn {
+  border: none;
+  border-left: 1px solid var(--border);
+  background: var(--sheet-bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 0 14px;
+  min-height: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.flat-btn:hover {
+  background: var(--surface);
+}
+
+/* ==========================================================================
+   Folha do Infográfico
+   ========================================================================== */
+.page-wrap {
+  padding: 20px 16px 48px;
+}
+
+.sheet-center {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.sheet {
+  width: 100%;
+  margin: 0;
+  background: var(--sheet-bg);
+  border: 2px solid var(--border-dark);
+}
+
+/* Cabeçalho Compacto e Reto */
+.sheet-header {
+  padding: 22px 28px 18px;
+  border-bottom: 2px solid var(--border-dark);
+}
+
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.header-main-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.header-main-row h1 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.6vw, 38px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.header-dates-inline {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border-dark);
+}
+
+.header-dates-inline span {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-right: 1px solid var(--border-dark);
+  background: var(--surface);
+}
+
+.header-dates-inline span:last-child {
+  border-right: none;
+}
+
+.header-summary-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.summary-cell {
+  padding: 8px 12px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.summary-cell:last-child {
+  border-right: none;
+}
+
+.summary-cell strong {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.summary-cell span {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.header-note {
+  margin: 0;
+  padding: 9px 12px;
+  background: var(--surface);
+  border-left: 4px solid var(--border-dark);
+  font-size: 12.2px;
+  color: var(--text-2);
+}
+
+/* ==========================================================================
+   Seções de Data (Faixa Sólida + Filmes em Destaque)
+   ========================================================================== */
+.date-section {
+  border-bottom: 2px solid var(--border-dark);
+}
+
+.date-bar {
+  background: var(--surface-strong);
+  color: var(--surface-strong-text);
+  padding: 13px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date-bar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date-bar-day {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: #D92638;
+  color: #FFFFFF;
+}
+
+.date-bar-day.is-dunesday {
+  background: #E59D1A;
+  color: #111111;
+}
+
+.date-bar-day.is-pending {
+  background: #52525B;
+  color: #FFFFFF;
+}
+
+.date-bar h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.date-bar-meta {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  opacity: 0.85;
+}
+
+.date-body {
+  padding: 22px 28px 24px;
+}
+
+/* ==========================================================================
+   Card de Filme — Protagonista Absoluto
+   ========================================================================== */
+.movies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.movie-row {
+  display: grid;
+  grid-template-columns: 204px 1fr;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.movie-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.movie-poster-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: start;
+  border: 1px solid var(--border-dark);
+  background: var(--surface);
+}
+
+.movie-poster-col img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.poster-tag {
+  background: var(--surface-strong);
+  color: var(--surface-strong-text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 8px;
+  text-align: center;
+}
+
+.movie-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.movie-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.movie-title-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.movie-title {
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.movie-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.movie-facts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.rating-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.rating-L { background: #15803D; }
+.rating-14 { background: #EA580C; }
+.rating-18 { background: #111111; border: 1px solid #52525B; }
+.rating-SC { background: #52525B; }
+
+.fact-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+
+.movie-synopsis {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.56;
+  color: var(--text-2);
+}
+
+/* Blocos de Horários por Rede */
+.chains-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chain-block {
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--chain-color, #111111);
+  background: var(--surface);
+}
+
+.chain-block-head {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--sheet-bg);
+}
+
+.chain-block-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chain-swatch {
+  width: 10px;
+  height: 10px;
+  background: var(--chain-color, #111111);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.chain-block-address {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.room-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.room-item {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.room-item:last-child {
+  border-bottom: none;
+}
+
+.room-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+}
+
+.room-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.room-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  background: var(--sheet-bg);
+  color: var(--text-2);
+}
+
+.room-tag.is-leg {
+  border-color: var(--chain-pajucara);
+  color: var(--chain-pajucara);
+}
+
+.room-tag.is-tech {
+  border-color: var(--chain-kinoplex);
+  color: var(--chain-kinoplex);
+}
+
+.times-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.time-box {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  background: var(--sheet-bg);
+  color: var(--text);
+  border: 1.5px solid var(--border-dark);
+  min-width: 62px;
+  text-align: center;
+}
+
+.date-footnote {
+  margin-top: 16px;
+  padding: 9px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   27/12 — Aviso + Radar de Estreias Flat
+   ========================================================================== */
+.pending-notice {
+  border: 1px solid var(--border-dark);
+  border-left: 5px solid #52525B;
+  background: var(--surface);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.pending-notice strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.pending-notice p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.radar-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.radar-title-bar h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.radar-title-bar span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.radar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.radar-item {
+  border: 1px solid var(--border);
+  background: var(--sheet-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.radar-poster-wrap {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.radar-poster-wrap img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.radar-release-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #111111;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 7px;
+  text-transform: uppercase;
+}
+
+.radar-content {
+  padding: 10px 11px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.radar-genre {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.radar-content h4 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.radar-content p {
+  margin: 2px 0 0;
+  font-size: 11.8px;
+  line-height: 1.44;
+  color: var(--text-2);
+}
+
+/* ==========================================================================
+   Diretório Compacto de Redes (Ao Final)
+   ========================================================================== */
+.directory-section {
+  padding: 22px 28px;
+  border-bottom: 2px solid var(--border-dark);
+  background: var(--surface);
+}
+
+.directory-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.directory-head h2 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.directory-head span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.dir-card {
+  background: var(--sheet-bg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--chain-color, #111111);
+  padding: 11px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dir-card.dir-wide {
+  grid-column: 1 / -1;
+  border-style: dashed;
+  border-left-style: solid;
+}
+
+.dir-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dir-top strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+}
+
+.dir-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+.dir-status.live {
+  background: var(--surface-strong);
+  color: var(--surface-strong-text);
+  border-color: var(--border-dark);
+}
+
+.dir-venue {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--chain-color, var(--text));
+}
+
+.dir-address {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.dir-tags {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Estado vazio de filtro */
+.empty-state {
+  border: 1px solid var(--border-dark);
+  background: var(--surface);
+  padding: 18px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* Rodapé */
+.sheet-footer {
+  padding: 14px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   OTIMIZAÇÃO MOBILE (Celular / GitHub Pages)
+   ========================================================================== */
+@media (max-width: 860px) {
+  .radar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header-summary-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .summary-cell:nth-child(2) {
+    border-right: none;
+  }
+  .summary-cell:nth-child(1),
+  .summary-cell:nth-child(2) {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 680px) {
+  /* Barra superior em 2 faixas limpas para fácil toque com polegar */
+  .topbar-inner {
+    flex-direction: column;
+  }
+
+  .date-tabs {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab-btn {
+    flex: 1 1 25%;
+    padding: 0 8px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .tab-btn:last-child {
+    border-right: none;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .flat-select {
+    flex: 1 1 auto;
+    border-left: none;
+    min-width: 0;
+    font-size: 12px;
+    padding: 0 10px;
+  }
+
+  .flat-btn {
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  /* Folha full-bleed no celular */
+  .page-wrap {
+    padding: 0 0 28px;
+  }
+
+  .sheet {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .sheet-header {
+    padding: 16px 14px 14px;
+  }
+
+  .header-main-row {
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .header-main-row h1 {
+    font-size: 24px;
+  }
+
+  .header-dates-inline {
+    width: 100%;
+  }
+
+  .header-dates-inline span {
+    flex: 1;
+    text-align: center;
+    padding: 5px 4px;
+    font-size: 11px;
+  }
+
+  .date-bar {
+    padding: 12px 14px;
+  }
+
+  .date-bar h2 {
+    font-size: 17px;
+  }
+
+  .date-body {
+    padding: 16px 14px 18px;
+  }
+
+  /* Layout Mobile do Filme: Cartaz em destaque ao lado do título e fatos, ou empilhado limpo */
+  .movie-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-bottom: 20px;
+  }
+
+  .movie-poster-col {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .movie-title {
+    font-size: 21px;
+  }
+
+  .movie-synopsis {
+    font-size: 13px;
+  }
+
+  .chain-block-head {
+    flex-direction: column;
+    gap: 2px;
+    padding: 9px 10px;
+  }
+
+  .room-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 9px 10px;
+  }
+
+  .times-row {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .time-box {
+    font-size: 13px;
+    padding: 6px 10px;
+    min-width: 60px;
+  }
+
+  .radar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .radar-content {
+    padding: 8px 9px 10px;
+  }
+
+  .radar-content h4 {
+    font-size: 13px;
+  }
+
+  .radar-content p {
+    font-size: 11.2px;
+  }
+
+  .directory-section {
+    padding: 18px 14px;
+  }
+
+  .directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sheet-footer {
+    padding: 14px;
+    font-size: 11px;
+  }
+}
